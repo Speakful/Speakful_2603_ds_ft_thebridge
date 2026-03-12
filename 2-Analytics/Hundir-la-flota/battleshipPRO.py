@@ -86,10 +86,13 @@ def disparo_aleatorio(tablero):
         if tablero[disparo] != " " and tablero[disparo] != "X" and tablero[disparo] != "-":
             tablero[disparo] = "X"
             print("Impacto ! :)")
+            print("")
             return tablero
         elif tablero[disparo] == "X" or tablero[disparo] == "-":
             pass 
+            print("")
         else: 
             tablero[disparo] = "-"  
             print("Agua ! :(")
+            print("")
             return tablero
