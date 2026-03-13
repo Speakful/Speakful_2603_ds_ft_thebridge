@@ -3,14 +3,14 @@
 import numpy as np
 import random
 
-def crea_tablero(lado = 10):
+def crea_tablero(lado = 10): #1
     tablero = np.full((lado,lado)," ")
     return tablero
 
 # Crea la función `colocar_barcos(tablero)'tablero, que deberá de colocar la lista de barcos generados de forma aleatoria (6 barcos en total (3 barcos de eslora 2, 2 de eslora 3 y 1 eslora 4)) 
 # ¡Mucho ojo con barcos que estén superpuestos (no pueden ocupar dos barcos la misma casilla) o barcos que se salgan del tablero!
 
-def coloca_barco_plus(tablero, barco):
+def coloca_barco_plus(tablero, barco): #2
     tablero_temp = tablero.copy()
     num_max_filas = tablero.shape[0]
     num_max_columnas = tablero.shape[1]
@@ -29,7 +29,7 @@ def coloca_barco_plus(tablero, barco):
         tablero_temp[pieza] = "O"
     return tablero_temp
 
-def crea_barco_aleatorio(tablero,eslora = 4, num_intentos = 100):
+def crea_barco_aleatorio(tablero,eslora = 4, num_intentos = 100): #3
     num_max_filas = tablero.shape[0]
     num_max_columnas = tablero.shape[1]
     
@@ -66,14 +66,14 @@ def crea_barco_aleatorio(tablero,eslora = 4, num_intentos = 100):
 def recibir_disparo(tablero, coordenada):
     if tablero[coordenada] != " " and tablero[coordenada] != "X" and tablero[coordenada] != "-":
         tablero[coordenada] = "X"
-        print("Impacto :) !")
+        print("Impacto directo, capitán! :)")
         return tablero
     elif tablero[coordenada] == "X" or tablero[coordenada] == "-":
-        print("Ya disparaste aquí...")
+        print("Ya disparaste aquí... Perdiste el mapa ?")
         return None
     else:
         tablero[coordenada] = "-"
-        print("Agua :( ! ")
+        print("Agua... El mar se traga tu bala sin piedad :(")
         return tablero
     
 def disparo_aleatorio(tablero):
