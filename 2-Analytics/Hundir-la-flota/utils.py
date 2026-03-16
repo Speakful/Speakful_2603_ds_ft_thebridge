@@ -41,38 +41,54 @@ def coloca_barco_plus(tablero, barco): #2
 def crea_barco_aleatorio(tablero,eslora = 4, num_intentos = 100): #3
     num_max_filas = tablero.shape[0]
     num_max_columnas = tablero.shape[1]
+
+    barcos_id = ["Ranni", "Perla Negra", "Radahn", "Acorazado", "", "Tusk", 
+                      "Tank", "Fundador", "Malenia", "Ace", "Colosal", "Seaking"]
     
     while True:
        
         barco = []
 
         pieza_original = (random.randint(0,num_max_filas-1),random.randint(0, num_max_columnas -1))
-        print("Pieza original:", pieza_original)
+        print(f"{random.choice(barcos_id)}:", pieza_original)
         barco.append(pieza_original)
         orientacion = random.choice(["N","S","O","E"])
-        print("Con orientacion", orientacion)
+
+        if orientacion == "N":
+            print("Proa al norte, a la conquista !")
+            print("")
+        elif orientacion == "S":
+            print("Rumbo sur, hacia aguas desconocidas !")
+            print("")
+        elif orientacion == "O":
+            print("Navegando hacia el este, al horizonte !")
+            print("")
+        else: 
+            print("Virando al oeste, tierra a la vista !")
+            print("")
+
         fila = pieza_original[0]
         columna = pieza_original[1]
+
         for i in range(eslora -1):
             if orientacion == "N":
-                print("Proa al norte, a la conquista !")
                 fila -= 1
             elif orientacion  == "S":
-                print("Rumbo sur, hacia aguas desconocidas !")
                 fila += 1
             elif orientacion == "E":
-                print("Navegando hacia el este, al horizonte !")
                 columna += 1
             else:
-                print("Virando al oeste, tierra a la vista !")
                 columna -= 1
             pieza = (fila,columna)
             barco.append(pieza)
         tablero_temp = coloca_barco_plus(tablero, barco)
+
+        
         
         if type(tablero_temp) == np.ndarray:
             return tablero_temp
         print("Intenta colocar otro barco")
+        print("")
 
 # %%
 # Step 4: HANDLE PLAYER SHOTS
@@ -81,25 +97,17 @@ def crea_barco_aleatorio(tablero,eslora = 4, num_intentos = 100): #3
 def recibir_disparo(tablero, coordenada):
     if tablero[coordenada] != "[ ]" and tablero[coordenada] != "[X]" and tablero[coordenada] != "[-]":
         tablero[coordenada] = "[X]"
-        print("")
-        print("Impacto directo, capitán! :)")
-        print("")
-        print("-"*24, "FIN DEL TURNO", "-"*24)
+        print("PLAYER 1: Impacto directo, capitán! :)")
         print("")
         return tablero
     elif tablero[coordenada] == "[X]" or tablero[coordenada] == "[-]":
         print("")
-        print("Ya disparaste aquí... Perdiste el mapa ?")
-        print("")
-        print("-"*24, "FIN DEL TURNO", "-"*24)
+        print("PLAYER 1: Ya disparaste aquí... Perdiste el mapa ?")
         print("")
         return None
     else:
         tablero[coordenada] = "[-]"
-        print("")
-        print("Agua... El mar se traga tu bala sin piedad :(")
-        print("")
-        print("-"*24, "FIN DEL TURNO", "-"*24)
+        print("PLAYER 1: Agua... El mar se traga tu bala sin piedad :(")
         print("")
         return tablero
         
@@ -117,16 +125,21 @@ def disparo_aleatorio(tablero):
 
         if tablero[disparo] != "[ ]" and tablero[disparo] != "[X]" and tablero[disparo] != "[-]":
             tablero[disparo] = "[X]"
-            print("Impacto enemigo !")
+            print("CPU: Impacto enemigo !")
+            print("")
+            print("-"*20, "FIN DEL TURNO", "-"*20)
             print("")
             return tablero
         elif tablero[disparo] == "[X]" or tablero[disparo] == "[-]":
-            print("La IA repite coordenadas... Necesita un GPS !")
+            print("CPU: La IA repite coordenadas... Necesita un GPS !")
             pass 
+            print("-"*20, "FIN DEL TURNO", "-"*20)
             print("")
         else: 
             tablero[disparo] = "[-]"  
-            print("El enemigo dispara al vacío !")
+            print("CPU: El enemigo dispara al vacío !")
+            print("")
+            print("-"*20, "FIN DEL TURNO", "-"*20)
             print("")
             return tablero
 
