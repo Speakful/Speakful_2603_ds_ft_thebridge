@@ -81,6 +81,7 @@ while True:
 
         fila = int(input("Latitud: "))
         columna = int(input("Longitud "))
+        print("")
         if fila < 0 or fila > 9 or columna < 0 or columna > 9: #IF loop para no permitir coordenadas fuera del tablero // el loop continua hasta que el usuario introduce coordenadas válidas
             print("")
             print("Coordenadas fuera del tablero ! Introduce un número del 0 al 9") # indica al usuario el rango de coordenadas
