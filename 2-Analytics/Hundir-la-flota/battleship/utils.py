@@ -42,7 +42,7 @@ def crea_barco_aleatorio(tablero,eslora = 4, num_intentos = 100): #3
     num_max_filas = tablero.shape[0]
     num_max_columnas = tablero.shape[1]
 
-    barcos_id = ["Ranni", "Perla Negra", "Radahn", "Acorazado", "", "Tusk", 
+    barcos_id = ["Ranni", "Black Pearl", "Radahn", "Acorazado", "Water 7", "Tusk", 
                       "Tank", "Fundador", "Malenia", "Ace", "Colosal", "Seaking"]
     
     while True:
